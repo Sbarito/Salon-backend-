@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  postgres:
+    container_name: postgres_salon
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: salon
+      POSTGRES_DB: salon
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql_salon/data_salon
+      - ./migration.sql:/docker-entrypoint-initdb.d/migration.sql
+volumes:
+  postgres-data:
